@@ -7,4 +7,4 @@ def home(request):
 
 def flower_details(request, slug):
     flower = Flower.objects.get(slug=slug)
-    return {'flower':flower}
+    return render (request, 'flower_details.html', {'flower':flower})

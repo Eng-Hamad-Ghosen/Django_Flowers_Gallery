@@ -15,10 +15,33 @@
 	</head>
 	<body class="is-preload">
         
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+                        <!-- Header -->
+                            <header id="header">
+                                <a href="index.html" class="logo"><strong>Flower Gallary</strong></a>
+                                <ul class="icons">
+                                    <li></li>
+									
+									{% if user.is_authenticated %}
+										<li><a href="{% url 'logout' %}" title="logout" class="icon solid fa-sign-out-alt"><span class="label">Logout</span></a></li>
+										{% else %}
+											<li><a href="{% url 'login' %}" title="login" class="icon solid fa-sign-in-alt"><span class="label">Login</span></a></li>
+									{% endif %}
+											<li><a href="{% url 'register' %}" title="register"><span class="label">Register</span></a></li>
+										
+                                    <li><a href="#" class="icon solid fa-language"><span class="label">Language</span></a></li>
+                                </ul>
+                            </header>
         {% block content %}
             
         {% endblock content %}
-            
+	</div>
+</div>
+</div>
         		<!-- Scripts -->
 			<script src="{% static 'js/jquery.min.js' %}"></script>
 			<script src="{% static 'js/browser.min.js' %}"></script>

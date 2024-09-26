@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <section>
+        <header class="main">
+            <h1>Details</h1>
+        </header>
+
+        <span style="width: 500px;height: 250px;" class="image main"><img src="{{flower.image.url}}" alt="" /></span>
+
+        <hr class="major" /><br><br><br>
+        
+        <hr class="major" />
+
+        <h2>{{flower.title}}</h2>
+        <h3><p>{{flower.description}}.</p></h3>
+
+       
+    </section>
+
+{% endblock content %}

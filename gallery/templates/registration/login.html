@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    <!-- Section -->
+    <section>
+
+            <div class="col-6 col-12-medium">
+                <h3>Login</h3>
+                <form method="post" action="#">
+                    <div class="row gtr-uniform box" style="margin-left: 0;">
+                        <div class="col-12 col-12-xsmall">
+                            {% csrf_token %}
+                            {{form}}
+                        </div>
+                        <div class="col-12 col-12-xsmall">
+                            <h3>
+                                <input class="button primary" type="submit" value="Login">
+                            </h3>
+                        </div>                                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
+    
