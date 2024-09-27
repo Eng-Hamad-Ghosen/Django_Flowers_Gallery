@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -62,6 +63,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                'django.template.context_processors.i18n',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
@@ -105,14 +107,22 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
+
+LANGUAGES = [
+    ('en',('English')),
+    ('ar',('Arabic')),
+]
 
 TIME_ZONE = 'UTC'
-
+XGETTEXT_CMD = 'C:/Program Files/gettext-iconv/bin/xgettext.exe'
 USE_I18N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale/')
+]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
@@ -132,7 +142,7 @@ STATICFILES_DIRS=[
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-LOGIN_URL = 'account_regestration/logon/'
-LOGOUT_URL = 'account_regestration/logout/'
+LOGIN_URL = '/account_regestration/login/'
+LOGOUT_URL = '/account_regestration/logout/'
 LOGIN_REDIRECT_URL = '/Flowers/'
-LOGOUT_REDIRECT_URL = 'account_regestration/login/'
+LOGOUT_REDIRECT_URL = '/account_regestration/login/'

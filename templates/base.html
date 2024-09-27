@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load i18n %}
 <!DOCTYPE HTML>
 <!--
 	Editorial by HTML5 UP
@@ -22,7 +22,7 @@
 						<div class="inner">
                         <!-- Header -->
                             <header id="header">
-                                <a href="index.html" class="logo"><strong>Flower Gallary</strong></a>
+                                <a href="index.html" class="logo"><strong> {% trans 'Flower Gallary' %} </strong></a>
                                 <ul class="icons">
                                     <li></li>
 									
@@ -33,7 +33,25 @@
 									{% endif %}
 											<li><a href="{% url 'register' %}" title="register"><span class="label">Register</span></a></li>
 										
-                                    <li><a href="#" class="icon solid fa-language"><span class="label">Language</span></a></li>
+                                    <!-- <li><a href="#" class="icon solid fa-language"><span class="label">Language</span></a></li> -->
+									
+
+									<form action="{% url 'set_language' %}" method="post">
+										{% csrf_token %}
+										<!-- <input name="next" type="hidden" value="{{ redirect_to }}"> -->
+										<input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
+										<select name="language">
+											{% get_current_language as LANGUAGE_CODE %}
+											{% get_available_languages as LANGUAGES %}
+											{% get_language_info_list for LANGUAGES as languages %}
+											{% for language in languages %}
+												<option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+													{{ language.name_local }} ({{ language.code }})
+												</option>
+											{% endfor %}
+										</select>
+										<input type="submit" value="Go">
+									</form>
                                 </ul>
                             </header>
         {% block content %}
